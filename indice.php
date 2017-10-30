@@ -37,15 +37,13 @@
 		session_start();
 
 		
-		if(isset($_SESSION["torre_pos"])){
+		if(!isset($_SESSION["torre_pos"])){
+			$_SESSION["torre_pos"] = 'A8';
+		}else{
 			$_SESSION["torre_pos"] = strtoupper($_POST['posicion']);
-			$pos = $_SESSION["torre_pos"];
-			
 		}
 
-			$_SESSION["torre_pos"] = 'A8';
-			$pos = $_SESSION["torre_pos"];
-
+			
 		$letras = "A";
 
 		echo "<tr>";
@@ -60,13 +58,13 @@
 			
 			for($c=1;$c<=8;$c++){
 				if(($f%2==0 && $c%2==0) | ($f%2!=0 && $c%2!=0)){
-					if($letras.$c == $pos){
+					if($letras.$c == $_SESSION["torre_pos"]){
 						echo "<td class='negres' value='".$letras.$c."'><img src='torre.png'></td>";
 					}else{
 						echo "<td class='negres' value='".$letras.$c."'></td>";
 					}
 				}else{
-					if($letras.$c == $pos){
+					if($letras.$c == $_SESSION["torre_pos"]){
 						echo "<td value='".$letras.$c."'><img src='torre.png'></td>";
 					}else{
 						echo "<td value='".$letras.$c."'></td>";
