@@ -26,7 +26,7 @@
 <body>
 	<form action = "" method="post">
 		Escriure Posicion: <br>
-		<input type="text" name="posicion" value="a8">
+		<input type="text" name="posicion" value=" ">
 		<input type="submit" name="submit">
 	</form>
 
@@ -34,8 +34,18 @@
 
 	<table>
 	<?php
+		session_start();
 
-		$pos = strtoupper ($_POST['posicion']);
+		
+		if(isset($_SESSION["torre_pos"])){
+			$_SESSION["torre_pos"] = strtoupper($_POST['posicion']);
+			$pos = $_SESSION["torre_pos"];
+			
+		}
+
+			$_SESSION["torre_pos"] = 'A8';
+			$pos = $_SESSION["torre_pos"];
+
 		$letras = "A";
 
 		echo "<tr>";
