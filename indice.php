@@ -45,7 +45,9 @@
 			
 		$letras = "A";
 
-		if(substr($lastPos, 0,1) == substr($_SESSION["torre_pos"], 0,1) or substr($lastPos, 1,1) == substr($_SESSION["torre_pos"], 1,1)){}else{
+		if(substr($lastPos, 0,1) == substr($_SESSION["torre_pos"], 0,1) or substr($lastPos, 1,1) == substr($_SESSION["torre_pos"], 1,1)){
+			echo "La torre s'ha mogut correctament";
+		}else{
 			echo "La torre no es pot moure a ".$_SESSION["torre_pos"];
 			$_SESSION["torre_pos"] = $lastPos;
 		}
