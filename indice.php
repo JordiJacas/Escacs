@@ -26,8 +26,8 @@
 <body>
 	<form action = "" method="post">
 		Escriure Posicion: <br>
-		<input type="text" name="posicion" value=" ">
-		<input type="submit" name="submit">
+		<input type="text" name="posicion" value="">
+		<input type="submit" name="submit" value="Move">
 	</form>
 
 	<br>
@@ -35,16 +35,20 @@
 	<table>
 	<?php
 		session_start();
-
 		
 		if(!isset($_SESSION["torre_pos"])){
 			$_SESSION["torre_pos"] = 'A8';
 		}else{
+			$lastPos = $_SESSION["torre_pos"];	
 			$_SESSION["torre_pos"] = strtoupper($_POST['posicion']);
 		}
-
 			
 		$letras = "A";
+
+		if(substr($lastPos, 0,1) == substr($_SESSION["torre_pos"], 0,1) or substr($lastPos, 1,1) == substr($_SESSION["torre_pos"], 1,1)){}else{
+			echo "La torre no es pot moure a ".$_SESSION["torre_pos"];
+			$_SESSION["torre_pos"] = $lastPos;
+		}
 
 		echo "<tr>";
 			for($n=0;$n<=8;$n++){
